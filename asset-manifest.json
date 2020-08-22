@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/serranos-mexin/static/css/main.d90cda22.chunk.css",
+    "main.js": "/serranos-mexin/static/js/main.8f9a32c2.chunk.js",
+    "main.js.map": "/serranos-mexin/static/js/main.8f9a32c2.chunk.js.map",
+    "runtime-main.js": "/serranos-mexin/static/js/runtime-main.1510db02.js",
+    "runtime-main.js.map": "/serranos-mexin/static/js/runtime-main.1510db02.js.map",
+    "static/js/2.290108b7.chunk.js": "/serranos-mexin/static/js/2.290108b7.chunk.js",
+    "static/js/2.290108b7.chunk.js.map": "/serranos-mexin/static/js/2.290108b7.chunk.js.map",
+    "index.html": "/serranos-mexin/index.html",
+    "precache-manifest.924420019b46f0b4a7c298d772cebc04.js": "/serranos-mexin/precache-manifest.924420019b46f0b4a7c298d772cebc04.js",
+    "service-worker.js": "/serranos-mexin/service-worker.js",
+    "static/css/main.d90cda22.chunk.css.map": "/serranos-mexin/static/css/main.d90cda22.chunk.css.map",
+    "static/js/2.290108b7.chunk.js.LICENSE.txt": "/serranos-mexin/static/js/2.290108b7.chunk.js.LICENSE.txt",
+    "static/media/Alamo.jpg": "/serranos-mexin/static/media/Alamo.977a472b.jpg",
+    "static/media/Logo-Transparent.png": "/serranos-mexin/static/media/Logo-Transparent.9f9fdca7.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1510db02.js",
+    "static/js/2.290108b7.chunk.js",
+    "static/css/main.d90cda22.chunk.css",
+    "static/js/main.8f9a32c2.chunk.js"
+  ]
+}
