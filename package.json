@@ -2,7 +2,7 @@
   "name": "serranos",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://raphinitum95.github.io/serranos-mexin",
+  "homepage": "https://www.serranos-mexin.com",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
