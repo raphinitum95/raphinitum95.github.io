@@ -10,10 +10,13 @@ class Navigation extends Component {
                 <Navbar>
                     <Image src={Logo} />
                     <Nav>
-                        <MenuIcon onClick="myFunction(this)">
-                            <div className="bar1"></div>
-                            <div className="bar2"></div>
-                            <div className="bar3"></div>
+                        <MenuIcon
+                            show={this.props.mobile}
+                            onClick={this.props.toggleMenu}
+                        >
+                            <div className={this.props.open ? "change bar1" : "bar1"} />
+                            <div className={this.props.open ? "change bar2" : "bar2"} />
+                            <div className={this.props.open ? "change bar3" : "bar3"} />
                         </MenuIcon>
                         <ul>
                             <li>
@@ -63,22 +66,27 @@ const Nav = styled.nav`
 `;
 
 const MenuIcon = styled.div`
+    display: ${props => props.show === true ? "block" : "none"};
+    cursor: pointer;
     .bar1, .bar2, .bar3 {
-        width: 35px;
-        height: 5px;
-        background-color: #333;
-        margin: 6px 0;
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 4px auto;
         transition: 0.4s;
+        cursor: pointer;
     }
     
-    .change .bar1 {
-        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-        transform: rotate(-45deg) translate(-9px, 6px);
+    .change.bar1 {
+        background-color: #bc041f;
+        -webkit-transform: rotate(-45deg) translate(-2px, 2px);
+        transform: rotate(-45deg) translate(-2px, 2px);
     }
     
-    .change .bar2 {opacity: 0;}
+    .change.bar2 {opacity: 0;}
     
-    .change .bar3 {
+    .change.bar3 {
+        background-color: #bc041f;
         -webkit-transform: rotate(45deg) translate(-8px, -8px);
         transform: rotate(45deg) translate(-8px, -8px);
     }

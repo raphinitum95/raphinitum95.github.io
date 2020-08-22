@@ -15,17 +15,7 @@ class Body extends Component {
     }
 
     updateDimensions = () => {
-        if(window.innerWidth > 1200) {
-            this.setState({ columnCount: 4 });
-        } else if(window.innerWidth < 1200 && window.innerWidth > 1100) {
-            this.setState({ columnCount: 3 });
-        } else if(window.innerWidth < 1000 && window.innerWidth > 700) {
-            this.setState({columnCount: 2});
-        } else if(window.innerWidth < 700) {
-            this.setState({columnCount: 1});
-        }
-
-        if(window.innerWidth > 800) {
+        if(window.innerWidth < 800) {
             this.setState({ mobile: true });
         } else{
             this.setState({ mobile: false });
@@ -49,6 +39,12 @@ class Body extends Component {
             activeNav: navClick
         })
     };
+
+    handleMenuToggle = () => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
 
     render() {
         return (
