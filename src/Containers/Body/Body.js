@@ -74,7 +74,7 @@ const Background = styled.div`
     background-size: cover;
     height: 100vh;
     width: 100vw;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -100;
@@ -83,7 +83,7 @@ const Background = styled.div`
 const Overlay = styled.div`
     height: 100vh;
     width: 100vw;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -99;

@@ -11,6 +11,7 @@ class Navigation extends Component {
                     <Image src={Logo} />
                     <Nav
                         open={this.props.open}
+                        mobile={this.props.mobile}
                     >
                         <MenuIcon
                             mobile={this.props.mobile}
@@ -65,20 +66,20 @@ const Nav = styled.nav`
     & ul {
         color: white;
         list-style: none;
-        -webkit-transition: max-height 0.8s;
-        -moz-transition: max-height 0.8s;
-        transition: max-height 0.8s;
+        -webkit-transition: max-height 0.6s;
+        -moz-transition: max-height 0.6s;
+        transition: max-height 0.6s;
         overflow: hidden;
     }
-    ${({ open }) =>
-    open && css`
+    ${({ open, mobile }) =>
+    open && mobile && css`
         & ul {
             max-height: 100px;
         }`
     };
     
-    ${({ open }) =>
-    !open && css`
+    ${({ open, mobile }) =>
+    !open && mobile && css`
         & ul {
             max-height: 0;
             
