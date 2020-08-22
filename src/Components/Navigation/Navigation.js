@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Logo from "../../Assets/Images/Logo-Transparent.png";
 import Aux from "../../hoc/Aux/Aux";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 class Navigation extends Component {
     render() {
@@ -9,9 +9,12 @@ class Navigation extends Component {
             <Aux>
                 <Navbar>
                     <Image src={Logo} />
-                    <Nav>
+                    <Nav
+                        open={this.props.open}
+                    >
                         <MenuIcon
-                            show={this.props.mobile}
+                            mobile={this.props.mobile}
+                            open={this.props.open}
                             onClick={this.props.toggleMenu}
                         >
                             <div className={this.props.open ? "change bar1" : "bar1"} />
@@ -62,11 +65,29 @@ const Nav = styled.nav`
     & ul {
         color: white;
         list-style: none;
+        -webkit-transition: max-height 0.8s;
+        -moz-transition: max-height 0.8s;
+        transition: max-height 0.8s;
+        overflow: hidden;
     }
+    ${({ open }) =>
+    open && css`
+        & ul {
+            max-height: 100px;
+        }`
+    };
+    
+    ${({ open }) =>
+    !open && css`
+        & ul {
+            max-height: 0;
+            
+        }`
+    };
 `;
 
 const MenuIcon = styled.div`
-    display: ${props => props.show === true ? "block" : "none"};
+    display: ${props => props.mobile === true ? "block" : "none"};
     cursor: pointer;
     .bar1, .bar2, .bar3 {
         width: 30px;
