@@ -16,8 +16,7 @@ class Body extends Component {
     }
 
     updateDimensions = () => {
-        const size = window.innerWidth / 100;
-        if(window.innerWidth < 800) {
+        if(window.innerWidth < 1000) {
             this.setState({
                 mobile: true,
             });

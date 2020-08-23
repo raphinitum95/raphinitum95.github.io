@@ -77,7 +77,7 @@ export default Mobilenav
 const Container = styled.div`
     width: 100%;
     overflow: hidden;
-    height: ${props => props.open ? "100vh" : "3rem"};
+    height: ${props => props.open ? "100vh" : "10%"};
     background-color: black;
     color: white;
     position: relative;
@@ -88,7 +88,7 @@ const Container = styled.div`
 const Topnav = styled.div`
     width: 100%;
     overflow: hidden;
-    height: 3rem;
+    height: 8rem;
     background-color: "black";
     color: white;
     position: relative;
@@ -99,13 +99,13 @@ const Topnav = styled.div`
     }
     
     @keyframes slide{
-        from {left: 50%;}
-        to {left: 2%;}
+        from {left: 50%; transform: translate(50%, -50%);}
+        to {left: 0; transform: translate(0, -50%);}
     }
 `;
 
 const Image = styled.img`
-    height: 75%;
+    height: 50%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -117,7 +117,7 @@ const Image = styled.img`
 
 const SmallLogo = styled.img`
     position: absolute;
-    height: 60%;
+    height: 40%;
     top: 50%;
     left: 50%;
     transform: translate(50%, -50%);
@@ -180,8 +180,8 @@ const MenuIcon = styled.div`
     overflow: hidden;
     
     .bar1, .bar2, .bar3 {
-        width: 30px;
-        height: 2px;
+        width: 50px;
+        height: 4px;
         background-color: white;
         margin: 4px auto;
         transition: 0.4s;
@@ -192,11 +192,11 @@ const MenuIcon = styled.div`
     {
         content: 'MENU';
         position: absolute;
-        top: 22px;
+        top: 26px;
         right: 0;
         left: 0;
         color: #fff;
-        font-size: 9px;
+        font-size: 14px;
         font-weight: bold;
         font-family: 'Montserrat', Arial, Helvetica, sans-serif;
         text-align: center;
@@ -250,27 +250,27 @@ const MenuIcon = styled.div`
     
     @keyframes exitRight{
         from {transform: translateX(0);}
-        to {transform: translateX(30px);}
+        to {transform: translateX(50px);}
     }
     
     @keyframes enterRight{
-        from {transform: translateX(30px);}
+        from {transform: translateX(50px);}
         to {transform: translateX(0);}
     }
     
     @keyframes exitLeft{
         from {transform: translateX(0);}
-        to {transform: translateX(-30px);}
+        to {transform: translateX(-50px);}
     }
     
     @keyframes enterLeft{
-        from {transform: translateX(-30px);}
+        from {transform: translateX(-50px);}
         to {transform: translateX(0);}
     }
     
     @keyframes moveUpThenDown
     {
-        0%{ top:25; }
+        0%{ top:26; }
         50%{ top:-5px;}
         100%{ top:5px; }
     }
