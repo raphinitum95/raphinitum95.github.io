@@ -3,7 +3,7 @@ import Logo from "../../Assets/Images/Logo-Transparent.png";
 import Aux from "../../hoc/Aux/Aux";
 import styled, {css} from "styled-components";
 
-class Navigation extends Component {
+class Webnav extends Component {
     render() {
         return (
             <Aux>
@@ -46,7 +46,7 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation
+export default Webnav
 
 const Image = styled.img`
     width: 80%;

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import Hero from '../../Assets/Images/Alamo.jpg'
 import Aux from "../../hoc/Aux/Aux";
-import Navigation from "../../Components/Navigation/Navigation";
+import Webnav from "../../Components/Navigation/Webnav";
+import Mobilenav from "../../Components/Navigation/Mobilenav";
 
 class Body extends Component {
     constructor(props) {
@@ -15,10 +16,15 @@ class Body extends Component {
     }
 
     updateDimensions = () => {
+        const size = window.innerWidth / 100;
         if(window.innerWidth < 800) {
-            this.setState({ mobile: true });
+            this.setState({
+                mobile: true,
+            });
         } else{
-            this.setState({ mobile: false });
+            this.setState({
+                mobile: false,
+            });
         }
     };
 
@@ -49,17 +55,27 @@ class Body extends Component {
     render() {
         return (
             <Aux>
-                <Background/>
-                <Overlay/>
-                <Container>
-                    <Navigation
-                        active={this.state.activeNav}
-                        mobile={this.state.mobile}
-                        open={this.state.open}
-                        linkClick={this.handleNavClick}
-                        toggleMenu={this.handleMenuToggle}
-                    />
-                </Container>
+                {this.state.mobile ? <Aux>
+                        <Mobilenav
+                            active={this.state.activeNav}
+                            mobile={this.state.mobile}
+                            open={this.state.open}
+                            linkClick={this.handleNavClick}
+                            toggleMenu={this.handleMenuToggle}
+                        />
+                </Aux> : <Aux>
+                    <Background/>
+                    <Overlay/>
+                    <Container>
+                        <Webnav
+                            active={this.state.activeNav}
+                            mobile={this.state.mobile}
+                            open={this.state.open}
+                            linkClick={this.handleNavClick}
+                            toggleMenu={this.handleMenuToggle}
+                        />
+                    </Container>
+                </Aux>}
             </Aux>
         );
     }
