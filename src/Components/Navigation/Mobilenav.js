@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Aux from "../../hoc/Aux/Aux";
-import Logo from "../../Assets/Images/Logo-Black-Transparent.png";
+import Logo from "../../Assets/Images/Logo-White-Transparent.png";
 import Horns from "../../Assets/Images/Horns-Transparent.png"
 import styled, {css} from "styled-components";
 import {GiFoodTruck, GiTacos} from "react-icons/gi"
@@ -9,74 +9,88 @@ import {RiContactsLine} from "react-icons/ri"
 
 
 class Mobilenav extends Component {
+    constructor(props) {
+        super(props);
+        this.myLogo = React.createRef()
+    }
+
+
     render() {
         return (
             <Aux>
                 <Container
                     open={this.props.open}
                     height={this.props.height}
+                    isLandscape={this.props.width > this.props.height}
                 >
                     <Topnav
                         open={this.props.open}
+                        isLandscape={this.props.width > this.props.height}
                     >
-                        <Image src={Logo}
-                           open={this.props.open}
+                        <Image
+                            src={Logo}
+                            ref={this.myLogo}
+                            open={this.props.open}
+                            clicked={this.props.clicked}
                         />
                         <SmallLogo src={Horns}
-                           className={this.props.open ? "open" : ""}
-                           open={this.props.open}
+                            open={this.props.open}
+                            bigLogo={this.myLogo.current === null ? 0 : this.myLogo.current.offsetWidth}
+                            clicked={this.props.clicked}
                         />
                         <MenuIcon
                             open={this.props.open}
+                            clicked={this.props.clicked}
                             onClick={this.props.toggleMenu}
                         >
-                            <div className={`bar1 ${this.props.open ? "change" : "normal"}`} />
-                            <div className={`bar2 ${this.props.open ? "change" : "normal"}`} />
-                            <div className={`bar3 ${this.props.open ? "change" : "normal"}`} />
+                            <div className={`bar1 ${this.props.open ? "change" : this.props.clicked ? "normal" : ""}`} />
+                            <div className={`bar2 ${this.props.open ? "change" : this.props.clicked ? "normal" : ""}`} />
+                            <div className={`bar3 ${this.props.open ? "change" : this.props.clicked ? "normal" : ""}`} />
                         </MenuIcon>
                     </Topnav>
+
                     <Nav
                         open={this.props.open}
+                        clicked={this.props.clicked}
+                        height={this.props.height}
                     >
                         <ul>
-                            <div className={"line1"} />
-                            <div className={"line2"} />
-                            <Li
-                                className={`schedule`}
-                                onClick={() => this.props.linkClick(0)}
-                            >
-                                <div className={this.props.active === 0 ? "active" : ""}>
-                                    <GiFoodTruck />
-                                    Truck Schedule
-                                </div>
-                            </Li>
-                            <Li
-                                className={`menu`}
-                                onClick={() => this.props.linkClick(1)}
-                            >
-                                <div className={this.props.active === 1 ? "active" : ""}>
-                                    <GiTacos />
-                                    Menu
-                                </div>
-                            </Li>
-                            <Li
-                                className={`about`}
-                                onClick={() => this.props.linkClick(2)}
-                            >
-                                <div className={this.props.active === 2 ? "active" : ""}>
-                                    <SiAboutDotMe />
-                                    About Us
-                                </div>
-                            </Li>
-                            <Li
-                                className={`contact`}
-                                onClick={() => this.props.linkClick(3)}
-                            >
-                                <div className={this.props.active === 3 ? "active" : ""}>
-                                    <RiContactsLine />
-                                    Contact
-                                </div>
-                            </Li>
+                            {/*<Li*/}
+                            {/*    className={`schedule`}*/}
+                            {/*    onClick={() => this.props.linkClick(0)}*/}
+                            {/*>*/}
+                            {/*    <div className={this.props.active === 0 ? "active" : ""}>*/}
+                            {/*        <GiFoodTruck />*/}
+                            {/*        Truck Schedule*/}
+                            {/*    </div>*/}
+                            {/*</Li>*/}
+                            {/*<Li*/}
+                            {/*    className={`menu`}*/}
+                            {/*    onClick={() => this.props.linkClick(1)}*/}
+                            {/*>*/}
+                            {/*    <div className={this.props.active === 1 ? "active" : ""}>*/}
+                            {/*        <GiTacos />*/}
+                            {/*        Menu*/}
+                            {/*    </div>*/}
+                            {/*</Li>*/}
+                            {/*<Li*/}
+                            {/*    className={`about`}*/}
+                            {/*    onClick={() => this.props.linkClick(2)}*/}
+                            {/*>*/}
+                            {/*    <div className={this.props.active === 2 ? "active" : ""}>*/}
+                            {/*        <SiAboutDotMe />*/}
+                            {/*        About Us*/}
+                            {/*    </div>*/}
+                            {/*</Li>*/}
+                            {/*<Li*/}
+                            {/*    className={`contact`}*/}
+                            {/*    onClick={() => this.props.linkClick(3)}*/}
+                            {/*>*/}
+                            {/*    <div className={this.props.active === 3 ? "active" : ""}>*/}
+                            {/*        <RiContactsLine />*/}
+                            {/*        Contact*/}
+                            {/*    </div>*/}
+                            {/*</Li>*/}
                         </ul>
                     </Nav>
                 </Container>
@@ -89,49 +103,18 @@ export default Mobilenav
 
 const Container = styled.div`
     width: 100vw;
-    overflow: hidden;
-    height: ${props => props.open ? props.height : props.height * .10}px;
-    background-color: rgba(4, 123, 188, .5);
+    height: ${props => props.isLandscape ? props.height * .2 : props.height * .10}px;
+    background-color: black;
     color: white;
     position: relative;
-    display: flex;
-    flex-flow: column;
 `;
 
 const Topnav = styled.div`
     width: 100%;
     overflow: hidden;
-    height: ${props => props.open ? "10%" : "100%"};
+    height: 100%;
     color: white;
     position: relative;
-    
-    & .open{
-        animation: 
-            slide 1.2s, 
-            grow .8s 1.2s 1;
-        animation-fill-mode: forwards;
-    }
-    
-    @keyframes slide{
-        from {
-            left: 27%; 
-            height: 30%; 
-            transform: translate(50%, -50%);
-        }
-        to {
-            left: 5%; 
-            transform: translate(0, -50%);
-        }
-    }
-    
-    @keyframes grow{
-        from {
-            height: 30%; 
-        }
-        to {
-            height: 65%; 
-        }
-    }
 `;
 
 const Image = styled.img`
@@ -142,61 +125,140 @@ const Image = styled.img`
     transform: translate(0, -50%);
     display: block;
     margin: 0 auto;
-    opacity: ${props => props.open ? 0 : 1};
+    
+    ${({ clicked }) =>
+    !clicked && css`
+        opacity: 1;
+    `};
+    
+    ${({ open }) =>
+    open && css`
+        opacity: 0;
+    `};
+    
+    ${({ open, clicked }) =>
+    !open && clicked && css`
+        animation: show  1.2s;
+        animation-fill-mode: forwards;
+        
+        @keyframes show{
+            0% { opacity: 0; }
+            85% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    `};
 `;
 
 const SmallLogo = styled.img`
     position: absolute;
-    height: 30%;
+    height: 65%;
     top: 50%;
-    left: 27%;
     transform: translate(50%, -50%);
-    opacity: ${props => props.open ? 1 : 0};
-`;
 
-const Nav = styled.nav`
-    flex: 1 1 auto;
-    background-color: #047bbc;
-    display: flex;
-    & ul {
-        color: white;
-        list-style: none;
-        -webkit-transition: max-height 1s;
-        -moz-transition: max-height 1s;
-        transition: max-height 1s;
-        overflow: hidden;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        position: relative;
-        
-        .line1, .line2 {
-            background-color: white;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .line1 {
-            height: 90%;
-            width 1px;
-        }
-        
-        .line2 {
-            height: 1px;
-            width 90%;
-        }
-    }
-    ${({ open }) =>
-    open && css`
-        max-height: 100%
+    ${({ clicked }) =>
+    !clicked && css`
+        opacity: 0;
+        height: 35%;
     `};
     
     ${({ open }) =>
-    !open && css`
-        max-height: 0;
-        display: none;
+    open && css`
+        opacity: 1;
+        height: 35%;
+        animation: slide 1.2s;
+        animation-fill-mode: forwards;
+        
+        @keyframes slide{
+            0% {
+                left: ${props => props.bigLogo * .65}px;
+                top: 50%;
+                height: 35%;  
+                transform: translate(50%, -50%);
+            }
+            80% {
+                transform: translateY(-90%);
+            }
+            100% {
+                left: 5%; 
+                top: 50%;
+                height: 65%; 
+                transform: translate(0, -90%);
+                transform: translateY(-50%);
+            }
+        }
+    `};
+    
+    ${({ open, clicked }) =>
+    !open && clicked && css`
+        animation: 
+            slideBack 1.2s,
+            hide .1s 1.1s 1;
+        animation-fill-mode: forwards;
+        
+        @keyframes slideBack{
+            from {
+                left: 5%;
+                height: 65%; 
+                transform: translate(0, -50%);
+            }
+            to {
+                left: ${props => props.bigLogo * .60}px;  
+                height: 45%;
+                transform: translate(50%, -50%);
+            }
+        }
+        
+        @keyframes hide {
+            from { opacity: 1;}
+            to{ opacity: 0;}
+        }
+    `};
+`;
+
+const Nav = styled.nav`
+    background-color: #037E66;
+    height: ${props => props.height }px;
+    width: 55%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    
+    & ul {
+        color: white;
+        list-style: none;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        position: relative;
+    }
+    
+    ${({ clicked }) =>
+    !clicked && css`
+        transform: translateX(100%);
+    `};
+    
+    ${({ open }) =>
+    open && css`
+        animation: openMenu 1.5s;
+        animation-fill-mode: forwards;
+        
+        @keyframes openMenu{
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+    `};
+    
+    ${({ open, clicked }) =>
+    !open && clicked && css`
+        animation: closeMenu 1.4s;
+        animation-fill-mode: forwards;
+        
+        @keyframes closeMenu{
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
     `};
 `;
 
@@ -209,10 +271,32 @@ const MenuIcon = styled.div`
     transform: translateY(-50%);
     overflow: hidden;
     
+    ${({ open }) =>
+    open && css`
+        animation: slideLeft 1.5s;
+        animation-fill-mode: forwards;
+        
+        @keyframes slideLeft{
+            from {right: 1rem;}
+            to {right: 58%;}
+        }
+    `};
+    
+    ${({ open, clicked }) =>
+    !open && clicked && css`
+        animation: slideRight 1.5s;
+        animation-fill-mode: forwards;
+        
+        @keyframes slideRight{
+            from {right: 58%;}
+            to {right: 1rem;}
+        }
+    `};
+    
     .bar1, .bar2, .bar3 {
-        width: 30px;
+        width: 2.5rem;
         height: 4px;
-        background-color: black;
+        background-color: white;
         margin: 4px auto;
         transition: 0.4s;
         cursor: pointer;
@@ -222,7 +306,7 @@ const MenuIcon = styled.div`
     {
         content: 'MENU';
         position: absolute;
-        top: 29px;
+        top: 2rem;
         right: 0;
         left: 0;
         color: white;
@@ -269,32 +353,32 @@ const MenuIcon = styled.div`
     }
     
     @keyframes burnColor{
-        from {background-color: black;}
+        from {background-color: white;}
         to {background-color: #bc041f;}
     }
     
     @keyframes cleanColor{
         from {background-color: #bc041f;}
-        to {background-color: black;}
+        to {background-color: white;}
     }
     
     @keyframes exitRight{
         from {transform: translateX(0);}
-        to {transform: translateX(50px);}
+        to {transform: translateX(3rem);}
     }
     
     @keyframes enterRight{
-        from {transform: translateX(50px);}
+        from {transform: translateX(3rem);}
         to {transform: translateX(0);}
     }
     
     @keyframes exitLeft{
         from {transform: translateX(0);}
-        to {transform: translateX(-50px);}
+        to {transform: translateX(-3rem);}
     }
     
     @keyframes enterLeft{
-        from {transform: translateX(-50px);}
+        from {transform: translateX(-3rem);}
         to {transform: translateX(0);}
     }
     

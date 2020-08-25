@@ -14,6 +14,7 @@ class Body extends Component {
             mobile: true,
             pageWidth: 800,
             pageHeight: 800,
+            menuClicked: false
         }
     }
 
@@ -54,7 +55,8 @@ class Body extends Component {
 
     handleMenuToggle = () => {
         this.setState({
-            open: !this.state.open
+            open: !this.state.open,
+            menuClicked: true
         })
     }
 
@@ -68,6 +70,7 @@ class Body extends Component {
                             open={this.state.open}
                             width={this.state.pageWidth}
                             height={this.state.pageHeight}
+                            clicked={this.state.menuClicked}
                             linkClick={this.handleNavClick}
                             toggleMenu={this.handleMenuToggle}
                         />
