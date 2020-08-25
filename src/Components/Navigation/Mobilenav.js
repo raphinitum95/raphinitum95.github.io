@@ -4,8 +4,8 @@ import Logo from "../../Assets/Images/Logo-White-Transparent.png";
 import Horns from "../../Assets/Images/Horns-Transparent.png"
 import styled, {css} from "styled-components";
 import {GiFoodTruck, GiTacos} from "react-icons/gi"
-import {SiAboutDotMe} from "react-icons/si"
 import {RiContactsLine} from "react-icons/ri"
+import {ImProfile} from "react-icons/im"
 
 
 class Mobilenav extends Component {
@@ -22,9 +22,11 @@ class Mobilenav extends Component {
                     open={this.props.open}
                     height={this.props.height}
                     isLandscape={this.props.width > this.props.height}
+                    clicked={this.props.clicked}
                 >
                     <Topnav
                         open={this.props.open}
+                        height={this.props.height}
                         isLandscape={this.props.width > this.props.height}
                     >
                         <Image
@@ -55,42 +57,50 @@ class Mobilenav extends Component {
                         height={this.props.height}
                     >
                         <ul>
-                            {/*<Li*/}
-                            {/*    className={`schedule`}*/}
-                            {/*    onClick={() => this.props.linkClick(0)}*/}
-                            {/*>*/}
-                            {/*    <div className={this.props.active === 0 ? "active" : ""}>*/}
-                            {/*        <GiFoodTruck />*/}
-                            {/*        Truck Schedule*/}
-                            {/*    </div>*/}
-                            {/*</Li>*/}
-                            {/*<Li*/}
-                            {/*    className={`menu`}*/}
-                            {/*    onClick={() => this.props.linkClick(1)}*/}
-                            {/*>*/}
-                            {/*    <div className={this.props.active === 1 ? "active" : ""}>*/}
-                            {/*        <GiTacos />*/}
-                            {/*        Menu*/}
-                            {/*    </div>*/}
-                            {/*</Li>*/}
-                            {/*<Li*/}
-                            {/*    className={`about`}*/}
-                            {/*    onClick={() => this.props.linkClick(2)}*/}
-                            {/*>*/}
-                            {/*    <div className={this.props.active === 2 ? "active" : ""}>*/}
-                            {/*        <SiAboutDotMe />*/}
-                            {/*        About Us*/}
-                            {/*    </div>*/}
-                            {/*</Li>*/}
-                            {/*<Li*/}
-                            {/*    className={`contact`}*/}
-                            {/*    onClick={() => this.props.linkClick(3)}*/}
-                            {/*>*/}
-                            {/*    <div className={this.props.active === 3 ? "active" : ""}>*/}
-                            {/*        <RiContactsLine />*/}
-                            {/*        Contact*/}
-                            {/*    </div>*/}
-                            {/*</Li>*/}
+                            <Li
+                                className={`schedule`}
+                                isLandscape={this.props.width > this.props.height}
+                                onClick={() => this.props.linkClick(0)}
+                                className={this.props.active === 0 ? "active" : ""}
+                            >
+                                <div>
+                                    <GiFoodTruck />
+                                    Truck Schedule
+                                </div>
+                            </Li>
+                            <Li
+                                className={`menu`}
+                                isLandscape={this.props.width > this.props.height}
+                                onClick={() => this.props.linkClick(1)}
+                                className={this.props.active === 1 ? "active" : ""}
+                            >
+                                <div>
+                                    <GiTacos />
+                                    Menu
+                                </div>
+                            </Li>
+                            <Li
+                                className={`about`}
+                                isLandscape={this.props.width > this.props.height}
+                                onClick={() => this.props.linkClick(2)}
+                                className={this.props.active === 2 ? "active" : ""}
+                            >
+                                <div>
+                                    <ImProfile />
+                                    About Us
+                                </div>
+                            </Li>
+                            <Li
+                                className={`contact`}
+                                isLandscape={this.props.width > this.props.height}
+                                onClick={() => this.props.linkClick(3)}
+                                className={this.props.active === 3 ? "active" : ""}
+                            >
+                                <div>
+                                    <RiContactsLine />
+                                    Contact
+                                </div>
+                            </Li>
                         </ul>
                     </Nav>
                 </Container>
@@ -103,18 +113,43 @@ export default Mobilenav
 
 const Container = styled.div`
     width: 100vw;
-    height: ${props => props.isLandscape ? props.height * .2 : props.height * .10}px;
-    background-color: black;
+    background-color: transparent;
+    overflow-x: hidden;
     color: white;
-    position: relative;
+    position: absolute;
+    height: ${props => props.height}px;
+    
+    ${({ open, clicked }) =>
+    !open && clicked && css`
+        animation: small 1ms;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+        
+        @keyframes small{
+            from { height: ${props => props.height}px; }
+            to { height: ${props => props.isLandscape ? props.height * .2 + 10 : props.height * .10 + 10}px; }
+        }
+    `};
+    
+    ${({ open }) =>
+    open && css`
+        height: ${props => props.height}px;
+    `};
+    
+    ${({ clicked }) =>
+    !clicked && css`
+        height: ${props => props.isLandscape ? props.height * .2 + 10 : props.height * .10 + 10}px;
+    `};
 `;
 
 const Topnav = styled.div`
     width: 100%;
     overflow: hidden;
-    height: 100%;
+    background-color: black;
+    height: ${props => props.isLandscape ? props.height * .20 : props.height * .10}px;
     color: white;
     position: relative;
+    border-bottom: #bc041f 10px solid;
 `;
 
 const Image = styled.img`
@@ -165,7 +200,7 @@ const SmallLogo = styled.img`
     open && css`
         opacity: 1;
         height: 35%;
-        animation: slide 1.2s;
+        animation: slide 1.2s, fix 1ms 1.2s 1;
         animation-fill-mode: forwards;
         
         @keyframes slide{
@@ -183,9 +218,14 @@ const SmallLogo = styled.img`
                 top: 50%;
                 height: 65%; 
                 transform: translate(0, -90%);
-                transform: translateY(-50%);
             }
         }
+        
+        @keyframes fix{
+            from{ transform: translateY(-80%); }
+            to{ transform: translateY(-50%); }
+        }
+        
     `};
     
     ${({ open, clicked }) =>
@@ -216,9 +256,9 @@ const SmallLogo = styled.img`
 `;
 
 const Nav = styled.nav`
-    background-color: #037E66;
+    background-color: #119A7F;
     height: ${props => props.height }px;
-    width: 55%;
+    width: 10rem;
     position: absolute;
     top: 0;
     right: 0;
@@ -232,6 +272,7 @@ const Nav = styled.nav`
         margin: 0;
         height: 100%;
         position: relative;
+        overflow-y: scroll;
     }
     
     ${({ clicked }) =>
@@ -276,9 +317,10 @@ const MenuIcon = styled.div`
         animation: slideLeft 1.5s;
         animation-fill-mode: forwards;
         
+        
         @keyframes slideLeft{
             from {right: 1rem;}
-            to {right: 58%;}
+            to {right: 10.2rem;}
         }
     `};
     
@@ -288,7 +330,7 @@ const MenuIcon = styled.div`
         animation-fill-mode: forwards;
         
         @keyframes slideRight{
-            from {right: 58%;}
+            from {right: 10.2rem;}
             to {right: 1rem;}
         }
     `};
@@ -306,7 +348,7 @@ const MenuIcon = styled.div`
     {
         content: 'MENU';
         position: absolute;
-        top: 2rem;
+        top: 3rem;
         right: 0;
         left: 0;
         color: white;
@@ -384,7 +426,7 @@ const MenuIcon = styled.div`
     
     @keyframes moveUpThenDown
     {
-        0%{ top:29; }
+        0%{ top:3rem; }
         50%{ top:-5px;}
         100%{ top:5px; }
     }
@@ -400,30 +442,30 @@ const MenuIcon = styled.div`
 `;
 
 const Li = styled.li`
-    display: inline-block;
+    display: block;
     text-align: center;
-    width: 50%;
+    width: 100%;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box; 
-    height: 50%;
     cursor: pointer;
     position: relative;
+    -webkit-box-sizing: border-bottom: white 1px solid; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-bottom: white 1px solid;   /* Firefox, other Gecko */
+    border-bottom: white 1px solid;
     
-    & .active {
-        color: #bc041f;
+    &.active {
+        background-color: #004D3E;
     }
     
     & div {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        
+        padding-bottom: ${props => props.isLandscape ? ".2rem" : ".9rem"};
+        padding-top: ${props => props.isLandscape ? ".1rem" : ".3rem"};
+
         & svg {
             display: block;
-            height: 50%;
-            width: 50%;
+            height: 2rem;
+            width: 2rem;
             margin: 1rem auto;
         }
     }

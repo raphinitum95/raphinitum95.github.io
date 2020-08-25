@@ -4,6 +4,7 @@ import Hero from '../../Assets/Images/Alamo.jpg'
 import Aux from "../../hoc/Aux/Aux";
 import Webnav from "../../Components/Navigation/Webnav";
 import Mobilenav from "../../Components/Navigation/Mobilenav";
+import MobileMenu from "../../Components/Menu/MobileMenu";
 
 class Body extends Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class Body extends Component {
     handleNavClick = (navClick) => {
         this.setState({
             activeNav: navClick,
-            open: false
+            //open: false
         })
     };
 
@@ -63,7 +64,8 @@ class Body extends Component {
     render() {
         return (
             <Aux>
-                {this.state.mobile ? <Aux>
+                {this.state.mobile ?
+                    <Aux>
                         <Mobilenav
                             active={this.state.activeNav}
                             mobile={this.state.mobile}
@@ -74,19 +76,27 @@ class Body extends Component {
                             linkClick={this.handleNavClick}
                             toggleMenu={this.handleMenuToggle}
                         />
-                </Aux> : <Aux>
-                    <Background/>
-                    <Overlay/>
-                    <Container>
-                        <Webnav
-                            active={this.state.activeNav}
-                            mobile={this.state.mobile}
-                            open={this.state.open}
-                            linkClick={this.handleNavClick}
-                            toggleMenu={this.handleMenuToggle}
-                        />
-                    </Container>
-                </Aux>}
+                        `{this.state.activeNav == 0 ?
+                            <h1>Hello World</h1> :
+                            this.state.activeNav == 1 ?
+                                <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight}/> :
+                                ""
+                        }`
+                    </Aux> : <Aux>
+                        <h1>Only Mobile Site</h1>
+                        {/*<Background/>*/}
+                        {/*<Overlay/>*/}
+                        {/*<Container>*/}
+                        {/*    <Webnav*/}
+                        {/*        active={this.state.activeNav}*/}
+                        {/*        mobile={this.state.mobile}*/}
+                        {/*        open={this.state.open}*/}
+                        {/*        linkClick={this.handleNavClick}*/}
+                        {/*        toggleMenu={this.handleMenuToggle}*/}
+                        {/*    />*/}
+                        {/*</Container>*/}
+                    </Aux>
+                }
             </Aux>
         );
     }
