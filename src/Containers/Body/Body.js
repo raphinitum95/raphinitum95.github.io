@@ -12,6 +12,8 @@ class Body extends Component {
             activeNav: 0,
             open: false,
             mobile: true,
+            pageWidth: 800,
+            pageHeight: 800,
         }
     }
 
@@ -19,10 +21,14 @@ class Body extends Component {
         if(window.innerWidth < 1000) {
             this.setState({
                 mobile: true,
+                pageWidth: window.innerWidth,
+                pageHeight: window.innerHeight
             });
         } else{
             this.setState({
                 mobile: false,
+                pageWidth: window.innerWidth,
+                pageHeight: window.innerHeight
             });
         }
     };
@@ -41,7 +47,8 @@ class Body extends Component {
 
     handleNavClick = (navClick) => {
         this.setState({
-            activeNav: navClick
+            activeNav: navClick,
+            open: false
         })
     };
 
@@ -59,6 +66,8 @@ class Body extends Component {
                             active={this.state.activeNav}
                             mobile={this.state.mobile}
                             open={this.state.open}
+                            width={this.state.pageWidth}
+                            height={this.state.pageHeight}
                             linkClick={this.handleNavClick}
                             toggleMenu={this.handleMenuToggle}
                         />

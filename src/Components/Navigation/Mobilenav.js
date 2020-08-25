@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Aux from "../../hoc/Aux/Aux";
-import Logo from "../../Assets/Images/MobileLogo.png";
+import Logo from "../../Assets/Images/Logo-Black-Transparent.png";
 import Horns from "../../Assets/Images/Horns-Transparent.png"
 import styled, {css} from "styled-components";
 import {GiFoodTruck, GiTacos} from "react-icons/gi"
@@ -14,6 +14,7 @@ class Mobilenav extends Component {
             <Aux>
                 <Container
                     open={this.props.open}
+                    height={this.props.height}
                 >
                     <Topnav
                         open={this.props.open}
@@ -29,9 +30,9 @@ class Mobilenav extends Component {
                             open={this.props.open}
                             onClick={this.props.toggleMenu}
                         >
-                            <div className={this.props.open ? "change bar1" : "normal bar1"} />
-                            <div className={this.props.open ? "change bar2" : "normal bar2"} />
-                            <div className={this.props.open ? "change bar3" : "normal bar3"} />
+                            <div className={`bar1 ${this.props.open ? "change" : "normal"}`} />
+                            <div className={`bar2 ${this.props.open ? "change" : "normal"}`} />
+                            <div className={`bar3 ${this.props.open ? "change" : "normal"}`} />
                         </MenuIcon>
                     </Topnav>
                     <Nav
@@ -40,26 +41,38 @@ class Mobilenav extends Component {
                         <ul>
                             <div className={"line1"} />
                             <div className={"line2"} />
-                            <Li className={"schedule"}>
-                                <div>
+                            <Li
+                                className={`schedule`}
+                                onClick={() => this.props.linkClick(0)}
+                            >
+                                <div className={this.props.active === 0 ? "active" : ""}>
                                     <GiFoodTruck />
                                     Truck Schedule
                                 </div>
                             </Li>
-                            <Li className={"menu"}>
-                                <div>
+                            <Li
+                                className={`menu`}
+                                onClick={() => this.props.linkClick(1)}
+                            >
+                                <div className={this.props.active === 1 ? "active" : ""}>
                                     <GiTacos />
                                     Menu
                                 </div>
                             </Li>
-                            <Li className={"about"}>
-                                <div>
+                            <Li
+                                className={`about`}
+                                onClick={() => this.props.linkClick(2)}
+                            >
+                                <div className={this.props.active === 2 ? "active" : ""}>
                                     <SiAboutDotMe />
                                     About Us
                                 </div>
                             </Li>
-                            <Li className={"contact"}>
-                                <div>
+                            <Li
+                                className={`contact`}
+                                onClick={() => this.props.linkClick(3)}
+                            >
+                                <div className={this.props.active === 3 ? "active" : ""}>
                                     <RiContactsLine />
                                     Contact
                                 </div>
@@ -75,10 +88,10 @@ class Mobilenav extends Component {
 export default Mobilenav
 
 const Container = styled.div`
-    width: 100%;
+    width: 100vw;
     overflow: hidden;
-    height: ${props => props.open ? "100vh" : "10%"};
-    background-color: black;
+    height: ${props => props.open ? props.height : props.height * .10}px;
+    background-color: rgba(4, 123, 188, .5);
     color: white;
     position: relative;
     display: flex;
@@ -88,28 +101,45 @@ const Container = styled.div`
 const Topnav = styled.div`
     width: 100%;
     overflow: hidden;
-    height: 8rem;
-    background-color: "black";
+    height: ${props => props.open ? "10%" : "100%"};
     color: white;
     position: relative;
     
     & .open{
-        animation: slide 1.2s;
+        animation: 
+            slide 1.2s, 
+            grow .8s 1.2s 1;
         animation-fill-mode: forwards;
     }
     
     @keyframes slide{
-        from {left: 50%; transform: translate(50%, -50%);}
-        to {left: 0; transform: translate(0, -50%);}
+        from {
+            left: 27%; 
+            height: 30%; 
+            transform: translate(50%, -50%);
+        }
+        to {
+            left: 5%; 
+            transform: translate(0, -50%);
+        }
+    }
+    
+    @keyframes grow{
+        from {
+            height: 30%; 
+        }
+        to {
+            height: 65%; 
+        }
     }
 `;
 
 const Image = styled.img`
-    height: 50%;
+    height: 60%;
     position: absolute;
-    left: 50%;
+    left: 5%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
     display: block;
     margin: 0 auto;
     opacity: ${props => props.open ? 0 : 1};
@@ -117,9 +147,9 @@ const Image = styled.img`
 
 const SmallLogo = styled.img`
     position: absolute;
-    height: 40%;
+    height: 30%;
     top: 50%;
-    left: 50%;
+    left: 27%;
     transform: translate(50%, -50%);
     opacity: ${props => props.open ? 1 : 0};
 `;
@@ -180,9 +210,9 @@ const MenuIcon = styled.div`
     overflow: hidden;
     
     .bar1, .bar2, .bar3 {
-        width: 50px;
+        width: 30px;
         height: 4px;
-        background-color: white;
+        background-color: black;
         margin: 4px auto;
         transition: 0.4s;
         cursor: pointer;
@@ -192,11 +222,11 @@ const MenuIcon = styled.div`
     {
         content: 'MENU';
         position: absolute;
-        top: 26px;
+        top: 29px;
         right: 0;
         left: 0;
-        color: #fff;
-        font-size: 14px;
+        color: white;
+        font-size: 10px;
         font-weight: bold;
         font-family: 'Montserrat', Arial, Helvetica, sans-serif;
         text-align: center;
@@ -239,13 +269,13 @@ const MenuIcon = styled.div`
     }
     
     @keyframes burnColor{
-        from {background-color: white;}
+        from {background-color: black;}
         to {background-color: #bc041f;}
     }
     
     @keyframes cleanColor{
         from {background-color: #bc041f;}
-        to {background-color: white;}
+        to {background-color: black;}
     }
     
     @keyframes exitRight{
@@ -270,7 +300,7 @@ const MenuIcon = styled.div`
     
     @keyframes moveUpThenDown
     {
-        0%{ top:26; }
+        0%{ top:29; }
         50%{ top:-5px;}
         100%{ top:5px; }
     }
@@ -296,7 +326,7 @@ const Li = styled.li`
     cursor: pointer;
     position: relative;
     
-    &:hover{
+    & .active {
         color: #bc041f;
     }
     
@@ -308,8 +338,8 @@ const Li = styled.li`
         
         & svg {
             display: block;
-            width: 50%;
             height: 50%;
+            width: 50%;
             margin: 1rem auto;
         }
     }

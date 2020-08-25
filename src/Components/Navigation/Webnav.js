@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Logo from "../../Assets/Images/Logo-Transparent.png";
+import Logo from "../../Assets/Images/Logo-White-Transparent.png";
 import Aux from "../../hoc/Aux/Aux";
 import styled, {css} from "styled-components";
 
