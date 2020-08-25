@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3b06ac381acf9bd46d9dbc789a25226f",
+    "revision": "691e853ed5851176bf2f49dcb2b7ec7f",
     "url": "/index.html"
   },
   {
-    "revision": "ab8d910cf8d3d51dd618",
+    "revision": "ac0059a0b166249d1f8b",
     "url": "/static/css/main.d90cda22.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.0fec4a96.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ab8d910cf8d3d51dd618",
-    "url": "/static/js/main.7255dad2.chunk.js"
+    "revision": "ac0059a0b166249d1f8b",
+    "url": "/static/js/main.91567d25.chunk.js"
   },
   {
     "revision": "a256ab14d736a3eb835f",
@@ -28,11 +28,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/Alamo.977a472b.jpg"
   },
   {
-    "revision": "9f9fdca7081e79ae83d563cae8ef5334",
-    "url": "/static/media/Logo-Transparent.9f9fdca7.png"
+    "revision": "0cc7acc447f51e544fc68c870145740e",
+    "url": "/static/media/Logo-Black-Transparent.0cc7acc4.png"
   },
   {
-    "revision": "ffed83eef792c07f70de95eb5cb28dd1",
-    "url": "/static/media/MobileLogo.ffed83ee.png"
+    "revision": "9f9fdca7081e79ae83d563cae8ef5334",
+    "url": "/static/media/Logo-White-Transparent.9f9fdca7.png"
   }
 ]);
