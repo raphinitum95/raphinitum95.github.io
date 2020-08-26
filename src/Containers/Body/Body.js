@@ -5,6 +5,7 @@ import Aux from "../../hoc/Aux/Aux";
 import Webnav from "../../Components/Navigation/Webnav";
 import Mobilenav from "../../Components/Navigation/Mobilenav";
 import MobileMenu from "../../Components/Menu/MobileMenu";
+import MobileSchedule from "../../Components/Schedule/MobileSchedule";
 
 class Body extends Component {
     constructor(props) {
@@ -77,9 +78,9 @@ class Body extends Component {
                             toggleMenu={this.handleMenuToggle}
                         />
                         `{this.state.activeNav == 0 ?
-                            <h1>Hello World</h1> :
+                            <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
                             this.state.activeNav == 1 ?
-                                <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight}/> :
+                                <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
                                 ""
                         }`
                     </Aux> : <Aux>

@@ -150,6 +150,7 @@ const Topnav = styled.div`
     color: white;
     position: relative;
     border-bottom: #bc041f 10px solid;
+    z-index: 100;
 `;
 
 const Image = styled.img`
@@ -442,13 +443,14 @@ const MenuIcon = styled.div`
 `;
 
 const Li = styled.li`
+    cursor: url('${Horns}'), auto;
     display: block;
     text-align: center;
     width: 100%;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box; 
-    cursor: pointer;
+    cursor: url("${Horns}"), pointer;
     position: relative;
     -webkit-box-sizing: border-bottom: white 1px solid; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-bottom: white 1px solid;   /* Firefox, other Gecko */

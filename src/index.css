@@ -1,11 +1,15 @@
 body{
     margin: 0;
     overflow: hidden;
-    overflow-x: scroll;
-    height:100vh;
+    height:100%;
     font-family: "Helvetica Neue";
 }
 
 #root{
+    height: 100%;
+    overflow-x: scroll;
+}
+
+html {
     height: 100%;
 }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Menu from "../../Assets/Images/Menu.png"
 import Burritos from "../../Assets/Images/Burritos.png"
 import Chucherias from "../../Assets/Images/Chucherias.png"
 import styled from "styled-components";
@@ -16,7 +15,7 @@ class MobileMenu extends Component {
                     height={this.props.height}
                     isLandscape={this.props.isLandscape}
                 >
-                    <Title src={Burritos} />
+                    <Title src={Burritos} isLandscape={this.props.isLandscape} />
                     <ul className={"itemParent"}>
                         <MenuItem isLandscape={this.props.isLandscape}>Norteño</MenuItem>
                         <MenuItem isLandscape={this.props.isLandscape}>Picadillo | Papa</MenuItem>
@@ -31,7 +30,7 @@ class MobileMenu extends Component {
                     height={this.props.height}
                     isLandscape={this.props.isLandscape}
                 >
-                    <Title src={Chucherias} />
+                    <Title src={Chucherias} isLandscape={this.props.isLandscape}/>
                     <ul className={"itemParent"}>
                         <MenuItem isLandscape={this.props.isLandscape}>Street Tacos</MenuItem>
                         <MenuItem isLandscape={this.props.isLandscape}>Qesadillas</MenuItem>
@@ -65,6 +64,7 @@ const Column = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: -20;
     
     & .itemParent {
 
@@ -87,6 +87,6 @@ const MenuItem = styled.li`
 `;
 
 const Title = styled.img`
-    width: 100px;
+    width: ${props => props.isLandscape ? 40 : 65}%;
     padding: 1rem 0;
 `;
