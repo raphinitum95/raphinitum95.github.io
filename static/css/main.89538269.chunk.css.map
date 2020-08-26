@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACI,QAAS,CACT,eAAgB,CAEhB,4BACJ,CAEA,WAJI,WAOJ,CAHA,MAEI,iBACJ","file":"main.89538269.chunk.css","sourcesContent":["body{\n    margin: 0;\n    overflow: hidden;\n    height:100%;\n    font-family: \"Helvetica Neue\";\n}\n\n#root{\n    height: 100%;\n    overflow-x: scroll;\n}"]}
