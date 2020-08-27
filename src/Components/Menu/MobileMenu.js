@@ -51,7 +51,6 @@ const Container = styled.div`
     width: 100vw;
     height: ${props => props.height - props.navSize - 10}px;
     padding-top: ${props => props.navSize + 10}px;
-    margin-top: -18px;
     display: flex;
     flex-direction: row;
 `;

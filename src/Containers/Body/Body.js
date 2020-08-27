@@ -51,7 +51,7 @@ class Body extends Component {
     handleNavClick = (navClick) => {
         this.setState({
             activeNav: navClick,
-            //open: false
+            open: false
         })
     };
 
@@ -77,12 +77,12 @@ class Body extends Component {
                             linkClick={this.handleNavClick}
                             toggleMenu={this.handleMenuToggle}
                         />
-                        `{this.state.activeNav == 0 ?
+                        {this.state.activeNav === 0 ?
                             <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
-                            this.state.activeNav == 1 ?
+                            this.state.activeNav === 1 ?
                                 <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
                                 ""
-                        }`
+                        }
                     </Aux> : <Aux>
                         <h1>Only Mobile Site</h1>
                         {/*<Background/>*/}

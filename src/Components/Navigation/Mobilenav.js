@@ -58,10 +58,9 @@ class Mobilenav extends Component {
                     >
                         <ul>
                             <Li
-                                className={`schedule`}
+                                className={`schedule ${this.props.active === 0 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(0)}
-                                className={this.props.active === 0 ? "active" : ""}
                             >
                                 <div>
                                     <GiFoodTruck />
@@ -69,10 +68,9 @@ class Mobilenav extends Component {
                                 </div>
                             </Li>
                             <Li
-                                className={`menu`}
+                                className={`menu ${this.props.active === 1 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(1)}
-                                className={this.props.active === 1 ? "active" : ""}
                             >
                                 <div>
                                     <GiTacos />
@@ -80,10 +78,9 @@ class Mobilenav extends Component {
                                 </div>
                             </Li>
                             <Li
-                                className={`about`}
+                                className={`about ${this.props.active === 2 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(2)}
-                                className={this.props.active === 2 ? "active" : ""}
                             >
                                 <div>
                                     <ImProfile />
@@ -91,10 +88,9 @@ class Mobilenav extends Component {
                                 </div>
                             </Li>
                             <Li
-                                className={`contact`}
+                                className={`contact ${this.props.active === 3 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(3)}
-                                className={this.props.active === 3 ? "active" : ""}
                             >
                                 <div>
                                     <RiContactsLine />
