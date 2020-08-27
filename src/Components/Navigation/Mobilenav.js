@@ -118,6 +118,7 @@ const Container = styled.div`
     color: white;
     position: absolute;
     height: ${props => props.height}px;
+    z-index: 100;
     
     ${({ open, clicked }) =>
     !open && clicked && css`
@@ -150,7 +151,6 @@ const Topnav = styled.div`
     color: white;
     position: relative;
     border-bottom: #bc041f 10px solid;
-    z-index: 100;
 `;
 
 const Image = styled.img`
@@ -355,7 +355,6 @@ const MenuIcon = styled.div`
         color: white;
         font-size: 10px;
         font-weight: bold;
-        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
         text-align: center;
     }
     
