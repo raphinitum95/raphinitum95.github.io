@@ -2,6 +2,7 @@ import React from 'react';
 import {GoogleMap, Marker, InfoBox, useLoadScript} from "@react-google-maps/api"
 import Horns from "../../Assets/Images/Horns-Transparent.png"
 import styled from "styled-components";
+import {Container, Title, PageColumn, Bold} from "../../shared/styledComponents"
 
 export default function MobileSchedule(props) {
     let [latitude, setLatitude] = React.useState(29.437410)
@@ -30,63 +31,51 @@ export default function MobileSchedule(props) {
             navSize={props.isLandscape ? props.height * .2 : props.height * .10}
             height={props.height}
         >
-            <Title>Schedule</Title>
-            <Disclaimer>
-                Our hours of operation and location are subject to change. <br />Please refer back to this page to get our most up to date schedule.
-            </Disclaimer>
-            <List>
-                <ListItem><Bold>Monday: <Red>Closed</Red></Bold></ListItem>
-                <ListItem><Bold>Friday:</Bold> {standardTime}</ListItem>
-                <ListItem><Bold>Tuesday: <Red>Closed</Red></Bold></ListItem>
-                <ListItem><Bold>Saturday:</Bold> {standardTime}</ListItem>
-                <ListItem><Bold>Wednesday: <Red>Closed</Red></Bold></ListItem>
-                <ListItem><Bold>Sunday: <Red>Closed</Red></Bold></ListItem>
-                <ListItem><Bold>Thursday:</Bold> {standardTime}</ListItem>
-            </List>
-            <Column><p><Bold>Currently location:</Bold></p></Column>
-            <Column><p>{address}</p></Column>
-            <MapContainer>
-                <a href={`https://goo.gl/maps/qLv7zfVRTGG6BeVu6`} target={"blank"}>
-                    <GoogleMap mapContainerStyle={mapContainerStyle} zoom={16} center={{lat: latitude, lng: longitude}}>
-                        <Marker position={{lat: latitude, lng: longitude}} icon={iconPin}></Marker>
-                        <InfoBox position={{lat: latitude, lng: longitude}} >
-                            <div style={{ backgroundColor: "white", opacity: 0.75, padding: 10}}>
-                                <div style={{ fontSize: 12, color: "black" }}>
-                                    Porta Rossa Bar<br/>{address}
+            <PageColumn isLandscape={props.isLandscape}>
+                <Title isLandscape={props.isLandscape}>Schedule</Title>
+                <Disclaimer isLandscape={props.isLandscape}>
+                    Our hours of operation and location are subject to change. <br />Please refer back to this page to get our most up to date schedule.
+                </Disclaimer>
+                <List isLandscape={props.isLandscape}>
+                    <ListItem><Bold>Monday: <Red>Closed</Red></Bold></ListItem>
+                    <ListItem><Bold>Friday:</Bold> {standardTime}</ListItem>
+                    <ListItem><Bold>Tuesday: <Red>Closed</Red></Bold></ListItem>
+                    <ListItem><Bold>Saturday:</Bold> {standardTime}</ListItem>
+                    <ListItem><Bold>Wednesday: <Red>Closed</Red></Bold></ListItem>
+                    <ListItem><Bold>Sunday: <Red>Closed</Red></Bold></ListItem>
+                    <ListItem><Bold>Thursday:</Bold> {standardTime}</ListItem>
+                </List>
+                <Column><p><Bold>Currently location:</Bold></p></Column>
+                <Column><p>{address}</p></Column>
+            </PageColumn>
+            <PageColumn className={"map"} isLandscape={props.isLandscape}>
+                <MapContainer>
+                    {/*<a href={`https://goo.gl/maps/qLv7zfVRTGG6BeVu6`} target={"blank"}>*/}
+                        <GoogleMap mapContainerStyle={mapContainerStyle} zoom={16} center={{lat: latitude, lng: longitude}}>
+                            <Marker position={{lat: latitude, lng: longitude}} icon={iconPin}/>
+                            <InfoBox position={{lat: latitude, lng: longitude}} >
+                                <div style={{ backgroundColor: "white", opacity: 0.75, padding: 10}}>
+                                    <div style={{ fontSize: 12, color: "black" }}>
+                                        Porta Rossa Bar<br/>{address}
+                                    </div>
                                 </div>
-                            </div>
-                        </InfoBox>
-                    </GoogleMap>
-                </a>
-            </MapContainer>
+                            </InfoBox>
+                        </GoogleMap>
+                    {/*</a>*/}
+                </MapContainer>
+            </PageColumn>
         </Container>
     );
 }
 
-const Container = styled.div`
-    width: 85%;
-    height: ${props => props.height - props.navSize - 10}px;
-    padding-top: ${props => props.navSize + 10}px;
-    position: relative;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    font-size: 12px;
-`;
-
 const MapContainer = styled.div`
     width: 100%;
-    height: 60%;
-`;
-
-const Title = styled.h2`
-    text-align: center;
-    font-size: 1.5rem;
+    height: 100%
 `;
 
 const Disclaimer = styled.p`
     color: #bc041f;
-    font-size: .7rem;
+    font-size: ${props => props.isLandscape ? .5 : .7}rem;
     display: inline-block;
     margin: 0 auto;
     padding: 0 0 .5rem;
@@ -113,7 +102,7 @@ const List = styled.ul`
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
-    font-size: 12px;
+    font-size: ${props => props.isLandscape ? 10 : 12}px;
 `;
 
 const ListItem = styled.li`
@@ -121,10 +110,6 @@ const ListItem = styled.li`
     display: inline-block;
     position: relative;
     margin: .4rem 0;
-`;
-
-const Bold = styled.span`
-    font-weight: 900;
 `;
 
 const Red = styled.span`

@@ -6,12 +6,13 @@ import Webnav from "../../Components/Navigation/Webnav";
 import Mobilenav from "../../Components/Navigation/Mobilenav";
 import MobileMenu from "../../Components/Menu/MobileMenu";
 import MobileSchedule from "../../Components/Schedule/MobileSchedule";
+import MobileAbout from "../../Components/About/MobileAbout";
 
 class Body extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeNav: 0,
+            activeNav: 2,
             open: false,
             mobile: true,
             pageWidth: 800,
@@ -81,7 +82,9 @@ class Body extends Component {
                             <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
                             this.state.activeNav === 1 ?
                                 <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
-                                ""
+                                this.state.activeNav === 2 ?
+                                    <MobileAbout isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
+                                    ""
                         }
                     </Aux> : <Aux>
                         <h1>Only Mobile Site</h1>

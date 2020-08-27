@@ -64,7 +64,7 @@ class Mobilenav extends Component {
                             >
                                 <div>
                                     <GiFoodTruck />
-                                    Truck Schedule
+                                    Schedule
                                 </div>
                             </Li>
                             <Li
@@ -84,7 +84,7 @@ class Mobilenav extends Component {
                             >
                                 <div>
                                     <ImProfile />
-                                    About Us
+                                    About
                                 </div>
                             </Li>
                             <Li
@@ -110,7 +110,7 @@ export default Mobilenav
 const Container = styled.div`
     width: 100vw;
     background-color: transparent;
-    overflow-x: hidden;
+    overflow: hidden;
     color: white;
     position: absolute;
     height: ${props => props.height}px;
@@ -130,6 +130,7 @@ const Container = styled.div`
     
     ${({ open }) =>
     open && css`
+        overflow-y: unset;
         height: ${props => props.height}px;
     `};
     
