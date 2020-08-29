@@ -25,6 +25,12 @@ export default function MobileSchedule(props) {
         scaledSize: new window.google.maps.Size(50,40), //to reduce the size of icons
     };
 
+    const defaultOptions = {
+        fullscreenControl: false,
+        mapTypeControl: false,
+        streetViewControl: false,
+    }
+
     const standardTime = "7PM - 2AM"
     return (
         <Container
@@ -51,7 +57,12 @@ export default function MobileSchedule(props) {
             <PageColumn className={"map"} isLandscape={props.isLandscape}>
                 <MapContainer>
                     {/*<a href={`https://goo.gl/maps/qLv7zfVRTGG6BeVu6`} target={"blank"}>*/}
-                        <GoogleMap mapContainerStyle={mapContainerStyle} zoom={16} center={{lat: latitude, lng: longitude}}>
+                        <GoogleMap
+                            mapContainerStyle={mapContainerStyle}
+                            zoom={15}
+                            center={{lat: latitude, lng: longitude}}
+                            options={defaultOptions}
+                        >
                             <Marker position={{lat: latitude, lng: longitude}} icon={iconPin}/>
                             <InfoBox position={{lat: latitude, lng: longitude}} >
                                 <div style={{ backgroundColor: "white", opacity: 0.75, padding: 10}}>

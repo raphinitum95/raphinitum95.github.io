@@ -58,13 +58,13 @@ class Mobilenav extends Component {
                     >
                         <ul>
                             <Li
-                                className={`schedule ${this.props.active === 0 ? "active" : ""}`}
+                                className={`about ${this.props.active === 0 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(0)}
                             >
                                 <div>
-                                    <GiFoodTruck />
-                                    Schedule
+                                    <ImProfile />
+                                    About
                                 </div>
                             </Li>
                             <Li
@@ -78,13 +78,13 @@ class Mobilenav extends Component {
                                 </div>
                             </Li>
                             <Li
-                                className={`about ${this.props.active === 2 ? "active" : ""}`}
+                                className={`schedule ${this.props.active === 2 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(2)}
                             >
                                 <div>
-                                    <ImProfile />
-                                    About
+                                    <GiFoodTruck />
+                                    Schedule
                                 </div>
                             </Li>
                             <Li

@@ -12,7 +12,7 @@ class Body extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeNav: 2,
+            activeNav: 0,
             open: false,
             mobile: true,
             pageWidth: 800,
@@ -79,11 +79,11 @@ class Body extends Component {
                             toggleMenu={this.handleMenuToggle}
                         />
                         {this.state.activeNav === 0 ?
-                            <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
+                            <MobileAbout isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
                             this.state.activeNav === 1 ?
                                 <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
                                 this.state.activeNav === 2 ?
-                                    <MobileAbout isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
+                                    <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} />:
                                     ""
                         }
                     </Aux> : <Aux>
