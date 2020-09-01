@@ -7,6 +7,8 @@ import Mobilenav from "../../Components/Navigation/Mobilenav";
 import MobileMenu from "../../Components/Menu/MobileMenu";
 import MobileSchedule from "../../Components/Schedule/MobileSchedule";
 import MobileAbout from "../../Components/About/MobileAbout";
+import {Switch, Redirect, Route, withRouter} from "react-router-dom"
+import {initGa, updateGa} from "../../hoc/GA/InitGa";
 
 class Body extends Component {
     constructor(props) {
@@ -47,6 +49,12 @@ class Body extends Component {
     componentDidMount () {
         this.updateDimensions();
         window.addEventListener("resize", this.updateDimensions.bind(this));
+        initGa();
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.location.pathname !== this.props.location.pathname) {
+            updateGa(this.props.history.location.pathname);
+        }
     }
 
     handleNavClick = (navClick) => {
@@ -65,7 +73,7 @@ class Body extends Component {
 
     render() {
         return (
-            <Aux>
+            <Switch>
                 {this.state.mobile ?
                     <Aux>
                         <Mobilenav
@@ -78,14 +86,11 @@ class Body extends Component {
                             linkClick={this.handleNavClick}
                             toggleMenu={this.handleMenuToggle}
                         />
-                        {this.state.activeNav === 0 ?
-                            <MobileAbout isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
-                            this.state.activeNav === 1 ?
-                                <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} /> :
-                                this.state.activeNav === 2 ?
-                                    <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} />:
-                                    ""
-                        }
+                        <Route path={"/about"} exact component={() => <MobileAbout isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} />}/>
+                        <Route path={"/menu"} exact component={() => <MobileMenu isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} />} />
+                        <Route path={"/schedule"} exact component={() => <MobileSchedule isLandscape={this.state.pageWidth > this.state.pageHeight} height={this.state.pageHeight} />} />
+                        <Route path={"/contact"} exact component={() => ""} />
+                        <Redirect to={"/about"} />
                     </Aux> : <Aux>
                         <h1>Only Mobile Site</h1>
                         {/*<Background/>*/}
@@ -101,12 +106,12 @@ class Body extends Component {
                         {/*</Container>*/}
                     </Aux>
                 }
-            </Aux>
+            </Switch>
         );
     }
 }
 
-export default Body
+export default withRouter(Body)
 
 const Background = styled.div`
     background-image: url(${Hero});

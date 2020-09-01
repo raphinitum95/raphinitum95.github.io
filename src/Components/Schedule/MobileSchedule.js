@@ -5,9 +5,9 @@ import styled from "styled-components";
 import {Container, Title, PageColumn, Bold} from "../../shared/styledComponents"
 
 export default function MobileSchedule(props) {
-    let [latitude, setLatitude] = React.useState(29.437410)
-    let [longitude, setLongitude] = React.useState(-98.479330)
-    let [address, setAddress] = React.useState('1221 Broadway, San Antonio, TX 78215')
+    let [latitude] = React.useState(29.437410)
+    let [longitude] = React.useState(-98.479330)
+    let [address] = React.useState('1221 Broadway, San Antonio, TX 78215');
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API
@@ -18,8 +18,8 @@ export default function MobileSchedule(props) {
         height: "100%"
     }
 
-    if(loadError) return "loading error";
-    if(!isLoaded) return "Loading Map";
+    if(loadError) return <h1>"loading error"</h1>;
+    if(!isLoaded) return <h1>"Loading Map"</h1>;
     const iconPin = {
         url: Horns,
         scaledSize: new window.google.maps.Size(50,40), //to reduce the size of icons

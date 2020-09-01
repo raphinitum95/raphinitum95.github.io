@@ -6,6 +6,7 @@ import styled, {css} from "styled-components";
 import {GiFoodTruck, GiTacos} from "react-icons/gi"
 import {RiContactsLine} from "react-icons/ri"
 import {ImProfile} from "react-icons/im"
+import {Link} from "react-router-dom"
 
 
 class Mobilenav extends Component {
@@ -62,40 +63,48 @@ class Mobilenav extends Component {
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(0)}
                             >
-                                <div>
-                                    <ImProfile />
-                                    About
-                                </div>
+                                <Link to={"/about"} >
+                                    <div>
+                                        <ImProfile />
+                                        About
+                                    </div>
+                                </Link>
                             </Li>
                             <Li
                                 className={`menu ${this.props.active === 1 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(1)}
                             >
-                                <div>
-                                    <GiTacos />
-                                    Menu
-                                </div>
+                                <Link to={"/menu"} >
+                                    <div>
+                                        <GiTacos />
+                                        Menu
+                                    </div>
+                                </Link>
                             </Li>
                             <Li
                                 className={`schedule ${this.props.active === 2 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(2)}
                             >
-                                <div>
-                                    <GiFoodTruck />
-                                    Schedule
-                                </div>
+                                <Link to={"/schedule"} >
+                                    <div>
+                                        <GiFoodTruck />
+                                        Schedule
+                                    </div>
+                                </Link>
                             </Li>
                             <Li
                                 className={`contact ${this.props.active === 3 ? "active" : ""}`}
                                 isLandscape={this.props.width > this.props.height}
                                 onClick={() => this.props.linkClick(3)}
                             >
-                                <div>
-                                    <RiContactsLine />
-                                    Contact
-                                </div>
+                                <Link to={"/contact"} >
+                                    <div>
+                                        <RiContactsLine />
+                                        Contact
+                                    </div>
+                                </Link>
                             </Li>
                         </ul>
                     </Nav>
@@ -106,6 +115,8 @@ class Mobilenav extends Component {
 }
 
 export default Mobilenav
+
+const animationTime = .8;
 
 const Container = styled.div`
     width: 100vw;
@@ -118,9 +129,9 @@ const Container = styled.div`
     
     ${({ open, clicked }) =>
     !open && clicked && css`
-        animation: small 1ms;
+        animation: small ${animationTime}ms;
         animation-fill-mode: forwards;
-        animation-delay: 1.2s;
+        animation-delay: ${animationTime}s;
         
         @keyframes small{
             from { height: ${props => props.height}px; }
@@ -171,7 +182,7 @@ const Image = styled.img`
     
     ${({ open, clicked }) =>
     !open && clicked && css`
-        animation: show  1.2s;
+        animation: show  ${animationTime}s;
         animation-fill-mode: forwards;
         
         @keyframes show{
@@ -198,7 +209,7 @@ const SmallLogo = styled.img`
     open && css`
         opacity: 1;
         height: 35%;
-        animation: slide 1.2s, fix 1ms 1.2s 1;
+        animation: slide ${animationTime}s, fix ${animationTime}ms ${animationTime}s 1;
         animation-fill-mode: forwards;
         
         @keyframes slide{
@@ -229,8 +240,8 @@ const SmallLogo = styled.img`
     ${({ open, clicked }) =>
     !open && clicked && css`
         animation: 
-            slideBack 1.2s,
-            hide .1s 1.1s 1;
+            slideBack ${animationTime}s,
+            hide .1s ${animationTime}s 1;
         animation-fill-mode: forwards;
         
         @keyframes slideBack{
@@ -280,7 +291,7 @@ const Nav = styled.nav`
     
     ${({ open }) =>
     open && css`
-        animation: openMenu 1.5s;
+        animation: openMenu ${animationTime}s;
         animation-fill-mode: forwards;
         
         @keyframes openMenu{
@@ -291,7 +302,7 @@ const Nav = styled.nav`
     
     ${({ open, clicked }) =>
     !open && clicked && css`
-        animation: closeMenu 1.4s;
+        animation: closeMenu ${animationTime}s;
         animation-fill-mode: forwards;
         
         @keyframes closeMenu{
@@ -312,7 +323,7 @@ const MenuIcon = styled.div`
     
     ${({ open }) =>
     open && css`
-        animation: slideLeft 1.5s;
+        animation: slideLeft ${animationTime}s;
         animation-fill-mode: forwards;
         
         
@@ -324,7 +335,7 @@ const MenuIcon = styled.div`
     
     ${({ open, clicked }) =>
     !open && clicked && css`
-        animation: slideRight 1.5s;
+        animation: slideRight .8s;
         animation-fill-mode: forwards;
         
         @keyframes slideRight{
@@ -356,9 +367,9 @@ const MenuIcon = styled.div`
     }
     
     .change.bar3:before {
-        animation: moveUpThenDown 1.2s, shakeWhileMovingUp 1.2s;
+        animation: moveUpThenDown ${animationTime}s, shakeWhileMovingUp ${animationTime}s;
         animation-fill-mode: forwards;
-        animation-delay: .3s;
+        animation-delay: .2s;
     }
     
     .change.bar3 {
@@ -372,22 +383,22 @@ const MenuIcon = styled.div`
     }
     
     .change.bar2 {
-        animation: burnColor 0.8s, exitRight 1s;
+        animation: burnColor 0.8s, exitRight ${animationTime}s;
         animation-fill-mode: forwards;
     }
     
     .normal.bar2 {
-        animation: cleanColor 0.8s, enterRight 1s;
+        animation: cleanColor 0.8s, enterRight ${animationTime}s;
         animation-fill-mode: forwards;
     }
     
     .change.bar1 {
-        animation: burnColor 0.8s, exitLeft 1s;
+        animation: burnColor 0.8s, exitLeft ${animationTime}s;
         animation-fill-mode: forwards;
     }
     
     .normal.bar1 {
-        animation: cleanColor 0.8s, enterLeft 1s;
+        animation: cleanColor 0.8s, enterLeft ${animationTime}s;
         animation-fill-mode: forwards;
     }
     
@@ -452,13 +463,18 @@ const Li = styled.li`
     -moz-box-sizing: border-bottom: white 1px solid;   /* Firefox, other Gecko */
     border-bottom: white 1px solid;
     
-    &.active {
+    & a{
+        text-decoration: none;
+    }
+    
+    &.active div{
         background-color: #004D3E;
     }
     
     & div {
         padding-bottom: ${props => props.isLandscape ? ".2rem" : ".9rem"};
         padding-top: ${props => props.isLandscape ? ".1rem" : ".3rem"};
+        color: white;
 
         & svg {
             display: block;

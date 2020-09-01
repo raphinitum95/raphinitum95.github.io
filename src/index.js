@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Body from './Containers/Body/Body';
 import './index.css'
-require('dotenv').config();
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Body />
+      <BrowserRouter>
+          <Body />)
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
