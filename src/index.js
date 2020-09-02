@@ -4,6 +4,8 @@ import Body from './Containers/Body/Body';
 import './index.css'
 import {BrowserRouter} from "react-router-dom";
 
+require('dotenv').config();
+
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
